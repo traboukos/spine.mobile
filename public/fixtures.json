@@ -1,0 +1,85 @@
+[
+{
+  "id": "1",
+  "name": "Alex MacCaw",
+  "screenName": "maccman",
+  "bio":"Ruby/JavaScript developer, O'Reilly author and entrepreneur.",
+  "image_url":"http://a1.twimg.com/profile_images/1081483457/Gravatar_for_info_eribium_normal.jpeg",
+  "following_ids" : [2,3,4,5,6,7,8,9],
+  "follower_ids" : [2,3,4,5,6,7,8,9]
+},
+
+{
+  "id": "2",
+  "name": "Jeremy Ashkenas",
+  "screenName": "jashkenas",
+  "bio":"Interactive News at the NYTimes / Lead dev at DocumentCloud • Creator of CoffeeScript • Code is Literature",
+  "image_url":"http://a3.twimg.com/profile_images/1185870726/gravatar_normal.jpg",
+  "following_ids" : [1,3,4,5,6,7,8,9],
+  "follower_ids" : [1,3,4,5,6,7,8,9]
+},
+{
+  "id": "3",
+  "name": "wycats",
+  "screenName": "wycats",
+  "bio":"HTML5 is a jewel that we need to cut into a weapon",
+  "image_url":"http://a3.twimg.com/profile_images/1243967000/Yehuda_-_Small_normal.png",
+  "following_ids" : [2,1,4,5,6,7,8,9],
+  "follower_ids" : [2,1,4,5,6,7,8,9]
+},
+{
+  "id": "4",
+  "name": "John Resig",
+  "screenName": "jeresig",
+  "bio":"Creator of jQuery, JavaScript programmer, blogger, author, work on Khan Academy.",
+  "image_url":"http://a2.twimg.com/profile_images/1181631474/john_normal.jpg",
+  "following_ids" : [2,3,1,5,6,7,8,9],
+  "follower_ids" : [2,3,1,5,6,7,8,9]
+},
+{
+  "id": "5",
+  "name": "BrendanEich",
+  "screenName": "BrendanEich",
+  "bio":"",
+  "image_url":"http://a2.twimg.com/profile_images/59513850/me_normal.jpeg",
+  "following_ids" : [2,3,4,1,6,7,8,9],
+  "follower_ids" : [2,3,4,1,6,7,8,9]
+},
+{
+  "id": "6",
+  "name": "DHH",
+  "screenName": "dhh",
+  "bio":"Creator of Ruby on Rails, Partner at 37signals, Co-author of Rework and Getting Real",
+  "image_url":"http://a1.twimg.com/profile_images/67881828/headshot64_normal.jpg",
+  "following_ids" : [2,3,4,5,1,7,8,9],
+  "follower_ids" : [2,3,4,5,1,7,8,9]
+},
+{
+  "id": "7",
+  "name": "Aza Raskin",
+  "screenName": "azaaza",
+  "bio":"Founder of Massive Health. Former Creative Lead for Firefox. Founding member Mozilla Labs. Created Ubiquity, Songza.com, Bloxes.com (cardboard furniture).",
+  "image_url":"http://a2.twimg.com/profile_images/801298949/Aza_Evil_normal.png",
+  "following_ids" : [2,3,4,5,6,1,8,9],
+  "follower_ids" : [2,3,4,5,6,1,8,9]
+},
+{
+  "id": "8",
+  "name": "Marijn Haverbeke",
+  "screenName": "marijnjh",
+  "bio":"Hacker",
+  "image_url":"http://a0.twimg.com/profile_images/349460965/pic_normal.jpeg",
+  "following_ids" : [2,3,4,5,6,7,1,9],
+  "follower_ids" : [2,3,4,5,6,7,1,9]
+},
+{
+  "id": "9",
+  "name": "Nicholas C. Zakas",
+  "screenName": "slicknet",
+  "bio":"Web Geek",
+  "image_url":"http://a3.twimg.com/profile_images/1321675914/nzakas_normal.jpg",
+  "following_ids" : [2,3,4,5,6,7,8,1],
+  "follower_ids" : [2,3,4,5,6,7,8,1]
+}
+
+]

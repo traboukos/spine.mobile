@@ -1,26 +1,42 @@
 require("lib/jquery.touch")
-
-Stage    = require("controllers/index")
-Contacts = require("controllers/contacts")
-Contact  = require("models/contact")
+SlidingNavigationController = require("lib/sliding_navigation")
+Sidebar     = require("controllers/sidebar")
+User        = require("models/user")
+UserProfile = require("controllers/users")
+Contact     = require("controllers/contact")
 
 class App extends Spine.Controller
   elements:
-    "#stage": "stage"
+    "#content": "content"
+    "#email-form":"contact"
 
   constructor: ->
     super
     
-    @stage    = new Stage(el: @stage)
-    @contacts = new Contacts(stage: @stage)
+    document.addEventListener('touchmove', -> (e) e.preventDefault() , false);   
+
+    @slidingNavigation = new SlidingNavigationController(el: @content)
+    
+    @sidebar = new Sidebar()
+    @slidingNavigation.push(@sidebar,65,2)
+        
+    @contact = new Contact(el: @contact)
+    
+    $.getJSON "fixtures.json", (data) =>
+      User.refresh(data)
+      @profile = new UserProfile(1)
+      @slidingNavigation.push(@profile,2)
     
     $.preventDefaultTouch()
     $.setupTouch()
-    Spine.Route.setup(shim: true)
     
-    @navigate "/contacts"
-    
-    Contact.create(name: "Alex MacCaw", email: "info@eribium.org")
-    Contact.create(name: "Richard MacCaw", email: "ricci@example.com")
+    @routes
+      "/contact" : (params) => 
+        @slidingNavigation.el.queueNext =>
+          @slidingNavigation.el.gfx(translateY: "200px")
+      
+      "/"        : (params) ->
+        @slidingNavigation.el.queueNext =>
+          @slidingNavigation.el.gfx(translateY: "0px")
     
 module.exports = App

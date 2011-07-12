@@ -1,0 +1,18 @@
+<img class="profile-picture" src="${image_url}">
+<div class="profile-info">
+  <h2>${name}</h2>
+  <div class="screen-name">@${screenName}</div>
+</div>
+
+<div class="bio">${bio}</div>
+
+<div class="connections">
+  <a href="#" class="following">
+    Following <span>${following().length}</span>
+  </a>
+  
+  <a href="#" class="followers">
+    Followers <span>${followers().length}</span>
+  </a>
+
+</div>

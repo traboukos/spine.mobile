@@ -1,204 +1,332 @@
 @import "public/css/utils";
 
-body, html {
-  height: 100%;
+html{
+  font-family: Helvetica;
 }
 
-body {
-  font-family: Helvetica, Arial, sans-serif;
-  overflow-x: hidden;
-  -webkit-user-select: none;  
-  margin: 0; padding: 0;
-  background: #505561;
-  color: #292D39;
+body{
+  margin: 0;
+  background-color: #000;
 }
 
-* {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+#content{
+  overflow: hidden;
+  position: absolute;
+  background: url(../images/bak.png);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-#stage {
-  .vbox();
+.sidebar{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 295px;
+  color: #fff;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+  border-right: 2px groove #444;
   
-  > .content {
-    .box-flex(1);
+  .personal-info{
+    padding: 10px 0 10px 10px;
+    overflow: hidden;
+    
+    h1{
+      float: left;
+      margin: 15px 0 0 15px;
+      font-size: 20px;
+      letter-spacing: 0px;
+      font-weight: bold;
+    }
+    
+    .avatar{
+      .border-radius(5px);
+      -webkit-box-shadow: 0px 2px 10px rgba(0,0,0,0.7);
+      float: left;
+      width: 47px;
+      height: 47px;
+    }
   }
-}
-
-#header {
-  height: 40px;
-  line-height: 40px;
   
-  .border-box();
-  border-bottom: 1px solid #464854;
-  .inset-box-shadow(0, 1px, 0, rgba(255, 255, 255, 0.4));
+  ul{
+    list-style: none;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #222;
+    
+    li{
+      padding: 12px 0 12px 72px;
+      border-top: 1px solid #404040;
+      border-bottom: 1px solid #222;
+      color: #bcbcbc;
+      cursor: pointer;
+      
+      &.messages{
+        background: url(../images/envelope.png) 20px 6px no-repeat;
+      }
+      
+      &.messages.selected{
+        background: rgba(0,0,0,0.1) url(../images/envelope_selected.png) 16px 4px no-repeat;
+      }
+      
+      &.mentions{
+        background: url(../images/atsign.png) 20px 6px no-repeat;
+      }
+      
+      &.mentions.selected{
+        background: rgba(0,0,0,0.1) url(../images/atsign_selected.png) 20px 4px no-repeat;
+      }
+      
+      &.lists{
+        background:  url(../images/list.png) 22px 13px no-repeat;
+      }
+      
+      &.lists.selected{
+        background: rgba(0,0,0,0.1) url(../images/list_selected.png) 20px 11px no-repeat;
+      }
+      
+      &.profile{
+        background: url(../images/man.png) 20px 6px no-repeat;
+      }
+      
+      &.profile.selected{
+        background: rgba(0,0,0,0.1) url(../images/man_selected.png) 20px 5px no-repeat;
+      }
+    }
+    
+    li.selected{
+      border-top: 1px solid rgba(0, 0, 0, 0);
+      border-bottom: 1px solid rgba(0, 0, 0, 0);
+      color: #fff;
+    }
+  }
   
-  background: #B7BBC6;
-  background: -webkit-gradient(linear, left top, left bottom,   
-                from(rgba(255, 255, 255, 0.2)), 
-                color-stop(0.5, rgba(255, 255, 255, 0.1)),
-                color-stop(0.5, rgba(255, 255, 255, 0))
-              ),  
-              -webkit-gradient(linear, left top, left bottom,   
-                from(lighten(#9A9EAC, 10%)), 
-                to(#9A9EAC)
-              );
-}
-
-#footer {
-  .border-box();
-  border-top: 1px solid #464854;
-  .inset-box-shadow(0, 1px, 0, rgba(255, 255, 255, 0.2));
-  
-  background: #AFB3C0;
-  background: -webkit-gradient(linear, left top, left bottom,   
-                from(rgba(255, 255, 255, 0.1)), 
-                color-stop(0.5, rgba(255, 255, 255, 0.1)),
-                color-stop(0.5, rgba(255, 255, 255, 0))
-              ), -webkit-gradient(linear, left top, left bottom,   
-                from(lighten(#AFB3C0, 13%)), 
-                to(#AFB3C0)
-              );
-  .hbox();
-  .box-pack(center);
-  
-  color: #565D65;
-  text-shadow: 0 1px 0 #FFF;
-  font-weight: bold;
-  font-size: 15px;
-
-  .item {
-    width: 70px;
-    height: 30px;
-    line-height: 30px;
-
-    padding: 5px;
-    text-align: center;
-
-    cursor: pointer;
-    position: relative;
-
-    &.active, &:active {
-      background: rgba(255, 255, 255, 0.3);
+  footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    .box-shadow (0px, -1px, 15px, rgba(0,0,0,0.4));
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.02, rgba(0,0,0,0.1)),
+        color-stop(0.89, rgba(120,120,120,0.05))
+    );
+    background-image: -moz-linear-gradient(
+        center bottom,
+        rgba(0,0,0,0.1) 2%,
+        rgba(120,120,120,0.05) 89%
+    );
+    border-top: 1px solid #45464a;
+    
+    .email-button{
+      background: url(../images/pencil.jpg) top left repeat-x;
+      display: block;
+      width: 34px;
+      height: 30px;
+      margin: 10px 0 0 10px;
     }
   }
 }
 
-.viewport {
-  position: relative;  
-}
-
-.viewport > * {
+.user-list:before{
+  content:"";
   position: absolute;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
+  top: 0px;
+  left: -16px;
+  bottom: 0px;
+  width: 16px;
+  background: url(../images/shadow.png) top left repeat-y;
+  z-index: -1;
 }
 
-.viewport > *:not(.active) {
+.user-list.full-overlap:before{
   display: none;
 }
 
-.panel {
-  .vbox();
+.user-list{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  .border-radius(6px);
+  background-color: #ffffff;
+  width: 480px;
   
-  .content {
-    overflow: auto;
+  &.full-overlap{
+    border: 1px solid #aaa;
   }
   
-  .list {
-    .box-flex(1);    
-  }
-  
-  .fillout { 
-    background: #F6F6F7;
-    padding: 15px;
-    .box-flex(1);
-  }
-}
-
-.panel header {
-  height: 40px;
-  line-height: 40px;
+  .user{
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    min-height: 60px;
+    border-bottom: 1px solid #e0e0e0;
     
-  color: #292D39;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  text-align: center;
-  position: relative;
-  margin-top: -40px;
-
-  button {
-    margin: 6px;
-    padding: 5px 10px;
-    font-size: 13px;
-    cursor: pointer;
-    font-weight: bold;
-    border: 1px solid #777A85;
-    color: #313748;
-    text-shadow: 0 1px 0 #FFF;
-    .inset-box-shadow(0, 1px, 1px, rgba(0,0,0,0.08));
-    .border-radius(5px);
-
-    .vbg-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2));
-
-    &:active {
-      .inset-box-shadow(0, 1px, 2px, rgba(0,0,0,0.4));
+    .profile-picture{
+      .border-radius(4px);
+      float: left;
+      .box-shadow(0px, 1px, 3px, rgba(0,0,0,0.7));
     }
 
-    &.left  { 
-      position: absolute; left: 0; top: 0;
-    }
-    &.right { 
-      position: absolute; right: 0; top: 0;
-    }
-  }
+    .profile-info{
+      padding-left: 60px;
+      h2{
+        margin: 0;
+        font-size: 16px;
+        color: #333;
+      }
 
-  h1, h2 {
-    padding: 0;
-    font-size: 18px;
-    margin: 0 65px;
-    .ellipsis()
+      .screen-name{
+        color: #5d5d5d;
+        font-size: 14px;
+        padding-top: 5px;
+      }
+    }
+ 
   }
 }
 
-.list {
-  h3 {
-    margin: 0;
-    padding: 4px 15px;
-    color: #FFF;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.5);
-    .vbg-gradient(#9A9EAC, lighten(#9A9EAC, 10%));
-    font-size: 16px;
-    border-top: 1px solid #70727D;
-    border-bottom: 1px solid #70727D;
-    .inset-line();
+div.profile:before{
+  content:"";
+  position: absolute;
+  top: 0px;
+  left: -16px;
+  bottom: 0px;
+  width: 16px;
+  background: url(../images/shadow.png) top left repeat-y;
+  z-index: -1;
+}
+
+div.profile.full-overlap:before{
+  display: none;
+}
+
+div.profile{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  .border-radius(6px);
+  width: 440px;
+  background-color: #e6e6e6;
+  border: 1px solid #ccc;
+  padding: 20px;
+  
+  .profile-picture{
+    .border-radius(4px);
+    float: left;
+    .box-shadow(0px, 1px, 3px, rgba(0,0,0,0.7));
   }
   
-  .item {
-    cursor: pointer;
+  .profile-info{
+    padding-left: 60px;
+    h2{
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+    
+    .screen-name{
+      color: #5d5d5d;
+      font-size: 14px;
+      padding-top: 5px;
+    }
+  }
   
-    background: #F6F6F7;
-    background: -webkit-gradient(linear, left top, left bottom,   
-                  from(rgba(255, 255, 255, 1)), 
-                  color-stop(0.5, rgba(255, 255, 255, 0.4)),
-                  color-stop(0.5, rgba(255, 255, 255, 0))
-                ), #F6F6F7;
+  .bio{
+    margin-top: 40px;
+    border: 1px solid #aeaeae;
+    .border-radius(8px);
+    overflow: hidden;
+    .vbg-gradient(#f5f5f5, #f0f0f0);
+    clear: both;
+    min-height: 50px;
     padding: 15px;
-    border-bottom: 1px solid #CCCED4;
-    color: #292D39;
-    text-shadow: 0 1px 0 #FFF;
+    font-size: 14px;
+  }
+  
+  .connections{
+    margin-top: 40px;
+    border: 1px solid #aeaeae;
+    .border-radius(8px);
+    overflow: hidden;
+    .vbg-gradient(#f5f5f5, #f0f0f0);
+    
+    a{
+      display: block;
+      padding: 10px;
+      width: 180px;
+      text-decoration: none;
+      float: left;
+      text-align: center;
+      color: #000;
+      font-size: 16px;
       
-    &:active {
-      background: #F6F6F7;
-      .inset-box-shadow(0, 1px, 3px, rgba(0, 0, 0, 0.1));
-    }
-  
-    &:last-child {
-      border-bottom: none;
-      .box-shadow(0, 4px, 8px, rgba(0,0,0,0.3));
+      span{
+        display: block;
+        color: #808080;
+        padding-top: 5px;
+        font-size: 14px;
+      }
     }
     
-    &:last-child:active {
-      -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0,0,0,0.3);
+    .following{
+      border-right: 1px solid #aeaeae;
     }
-  } 
+  }
+}
+
+#email-form{
+  margin: 0 auto;
+  width: 600px;
+  height: 200px;
+  margin-top: 20px;
+  
+  header{
+    height: 44px;
+    background: url(../images/notepad-header-bak.jpg) top left repeat-x;
+    .border-radius-top(3px);
+    position: relative;
+    
+    a{
+      display: block;
+      padding: 5px 10px;
+      width: 30px;
+      height: 15px;
+      position: absolute;
+      text-decoration: none;
+      color: #fff;
+      top: 10px;
+      .border-radius(5px);
+      border: 1px solid #444;
+      .inset-box-shadow (1px, 0px, 4px, #333);
+      font-size: 12px;
+    }
+    
+    a.close{
+      left: 10px;
+    }
+
+  }
+  
+  .content{
+    background: url(../images/notepad-bak.jpg) top left repeat-y;
+    height: 155px;
+    font-size: 16px;
+    padding: 7px 10px 0 10px;
+    line-height: 30px;    
+    
+    a{
+      text-decoration: none;
+    }
+  }
 }
