@@ -8,6 +8,15 @@ Less CSS3 utils.
   border-radius: @r;
 }
 
+.border-radius-top(@r: 3px) {
+  -moz-border-radius-topleft: @r;
+  -moz-border-radius-topright: @r;
+  -webkit-border-top-left-radius: @r;
+  -webkit-border-top-right-radius: @r;
+  border-top-left-radius: @r;
+  border-top-right-radius: @r;
+}
+
 /* Vertical Background Gradient */
 .vbg-gradient(@fc: #FFF, @tc: #FFF) {
   background: @fc;
