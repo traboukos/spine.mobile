@@ -24,9 +24,20 @@ $.setupTouch = ->
     touch.y2 = e.touches[0].pageY
   .bind 'touchend', ->
     if 'last' of touch
-      $(touch.target).trigger('tap')
+      if touch.x2-touch.x1 > 15
+        $(touch.target).trigger('swipeRight')
+      else if touch.x2-touch.x1 < -15
+        $(touch.target).trigger('swipeLeft')
+      else if touch.y2-touch.y1 > 15
+        $(touch.target).trigger('swipeDown')
+      else if touch.y2-touch.y1 < -15
+        $(touch.target).trigger('swipeUp')
+      else 
+        $(touch.target).trigger('tap')
+      
       touch = {}
   .bind 'touchcancel', ->
+    console.log('touchcancel') 
     touch = {}  
 
 unless $.support.touch
