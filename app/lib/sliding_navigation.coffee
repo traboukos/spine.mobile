@@ -6,26 +6,58 @@ class SlidingNavigationController extends Spine.Controller
   topChildIndex    : 0
   topChild         : null
   
+  touch: {}
+  dragging: false
+  
   events:
-    "mousewheel" : "mousewheel"
     "swipeLeft"  : "swipeleft"
     "swipeRight" : "swiperight"
+    "touchstart" : "touchstart"
+    "touchmove"  : "touchmove"
+    "mousedown"  : "mousedown"
+    "mousemove"  : "mousemove"
+    "mouseup"    : "mouseup"
     
-  mousewheel: (e) ->
-    if e.wheelDelta > 0
-      @swiperight(e)
-    else
-      @swipeleft(e)
+  mousedown: (e) ->
+    @touch.x1 = e.pageX
+    @touch.currentOffsetWidth = @offsetWidth
+    @dragging = true
+    
+  mousemove: (e) ->
+    if @dragging
+      deltaX = @touch.x1 - e.pageX
+      @offsetWidth = @touch.currentOffsetWidth - deltaX
+
+      @repositionChildren(no)
+    
+  mouseup: (e) ->
+    @dragging = false
+    deltaX = @touch.x1 - e.pageX
+    return if Math.abs(deltaX) < 50
+    if deltaX < 0 then @swiperight() else @swipeleft()
   
-  swiperight: (e) ->
+  swiperight: ->
     return if @children.length == 1 or @fullyExpanded()
     
     @offsetWidth += @topChild.currentOverlap
       
-    console.log("swiperight #{@offsetWidth}")
     @repositionChildren()
+    
+  touchstart: (e) ->
+    e = e.originalEvent
+    @touch.x1 = e.touches[0].pageX
+    @touch.y1 = e.touches[0].pageY
+    
+    @touch.currentOffsetWidth = @offsetWidth
+    
+  touchmove: (e) ->
+    e = e.originalEvent
+    deltaX = @touch.x1 - e.touches[0].pageX
+    @offsetWidth = @touch.currentOffsetWidth - deltaX
+    
+    @repositionChildren(no)
           
-  swipeleft: (e) ->
+  swipeleft: ->
     return if @children.length == 1 or @fullyContracted()
 
     if @fullyExpanded()
@@ -46,7 +78,7 @@ class SlidingNavigationController extends Spine.Controller
   constructor: -> 
     super
 
-  push: (child,margin=0,defaultOverlap=0) ->
+  push: (child,margin=0,defaultOverlap=0,animated=yes) ->
     @appendController(child)
     
     childWidth      = child.el.outerWidth()
@@ -63,9 +95,9 @@ class SlidingNavigationController extends Spine.Controller
       
     @children.push(childInfo)
     
-    @repositionChildren()
+    @repositionChildren(animated)
         
-  repositionChildren: -> 
+  repositionChildren: (animated=yes)-> 
     containerWidth  = @el.width()
     overlapWidth = @childrenWidth - containerWidth - @offsetWidth
     if overlapWidth < 0 then overlapWidth = 0
@@ -89,7 +121,8 @@ class SlidingNavigationController extends Spine.Controller
         else
           child.controller.el.removeClass("full-overlap") 
           
-        child.controller.el.gfx(translateX:"#{-1 * child.translateX}px")
+        fn = if animated then 'gfx' else 'transform'
+        child.controller.el[fn](translate3d: "#{-1 * child.translateX}px,0,0")
         
         overlapWidth -= child.currentOverlap  
         previousChild = child
