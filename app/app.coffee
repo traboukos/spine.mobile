@@ -12,8 +12,6 @@ class App extends Spine.Controller
 
   constructor: ->
     super
-    
-    document.addEventListener('touchmove', -> (e) e.preventDefault() , false);   
 
     @slidingNavigation = new SlidingNavigationController(el: @content)
     
